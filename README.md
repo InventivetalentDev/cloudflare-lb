@@ -26,6 +26,7 @@ API      = ''                     # Your CloudFlare client API key found at http
 EMAIL    = 'example@example.com'  # Your CloudFlare email address
 RECORD   = 'lb'                   # where you want the load balancer
 DOMAIN   = 'example.com'          # Use DOMAIN if this is for the root domain
+ZONE     = 'example.com'          # Name of the Zone you want to edit (typically the domain name)
 TTL      = 1                      # Set TTL
 RECS     = []                     # RECORDS
 INTERVAL = 60                     #how long we wait between runs
@@ -38,9 +39,12 @@ INTERVAL = 60                     #how long we wait between runs
 * The RECS variable should be left blank.
 * INTERVAL is how often you want the script to run. I found 60 seconds pretty safe number depending on your needs you may want it faster or slower but not sure if cloudflre will rate limit your api access if you go overboard.
 
+# Installing
+`$ pip install -r requirements.txt`
+
 Running
 =======
-$ python cloudflare-lb.py
+`$ python3.5 cloudflare-lb.py`
 
 That will kick the script off it does log things to stdout. You may wanna just point it to /dev/null if you dont care or a file or something for your records. It does not run as a service but if you use a processes manaager like supervsor. If you want to run this in crontab. Set INTERVAL = 0. This will cause the program to not run in a loop.
 
