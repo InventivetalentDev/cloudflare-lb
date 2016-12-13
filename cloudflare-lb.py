@@ -102,7 +102,10 @@ def healthcheck(host):
     try:
         url = "{0}://{1}:{2}/".format(PROTO, host[0], str(PORT))
         print("\nTesting connection to " + url)
-        run = urlopen(url)
+        req = requests.Request(method="GET", url=url, headers={"User-Agent": "Cloudflare-LoadBalancer"})
+        r = req.prepare()
+        session = requests.session()
+        session.send(r)
         print("-> ONLINE")
         if not get_rec(ZONE_ID, RECORD, host[1], host[0]):  # needs to be added
             add_rec(host)
