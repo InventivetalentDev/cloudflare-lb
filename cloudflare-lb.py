@@ -98,7 +98,6 @@ def add_rec(rec):
 
 
 def healthcheck(host):
-    # TODO: add IP exception to Cloudflare firewall
     try:
         url = "{0}://{1}:{2}/".format(PROTO, host[0], str(PORT))
         print("\nTesting connection to " + url)
