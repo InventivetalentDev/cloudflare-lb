@@ -1,11 +1,8 @@
 #!/usr/bin/env python
 
 import json
-import urllib
-import httplib2
 import time
 import random
-from urllib.parse import urlencode
 from urllib.request import urlopen
 import requests
 
