@@ -44,7 +44,6 @@ def call_api(route, params, method="GET"):
 def get_zone(name):
     print("\nLooking up zone with name " + name + "...")
     zones = call_api("/zones", {"name": DOMAIN, "status": "active"})
-    print(zones)
     if len(zones['result']) == 0:
         print("\nCouldn't find any zones")
         return False
@@ -58,7 +57,6 @@ def get_zone(name):
 def get_recs(zone_id):
     print("\nLoading DNS records")
     rec = call_api("/zones/" + zone_id + "/dns_records", {"name": DOMAIN, "per_page": 100})
-    print(rec)
     if rec['success']:
         print(rec['result'])
         return rec['result']
@@ -69,7 +67,6 @@ def get_recs(zone_id):
 def get_rec(zone_id, name, type, content):
     print("\nLooking up " + type + " record '" + name + "' with '" + content + "'")
     rec = call_api("/zones/" + zone_id + "/dns_records", {"name": name, "content": content, "type": type})
-    print(rec)
     if rec['success']:
         print(rec['result'])
         return rec['result']
